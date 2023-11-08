@@ -27,3 +27,5 @@ what is this?
 ### Component Heirarchy Diagram
 ![](/images/Component%20Heirarchy%20Diagram%20project4.png)
 
+### Website wireframe
+![](/images/wireframe.png)
