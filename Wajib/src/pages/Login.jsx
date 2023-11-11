@@ -52,7 +52,6 @@ const Login = ({ setUser }) => {
           value={formState.password}
         />
       </div>
-
       <Button disabled={valid} type="submit">
         Login
       </Button>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { BASE_URL } from '../Globals'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FormLabel from '@mui/joy/FormLabel'
 import Input from '@mui/joy/Input'
 
@@ -14,21 +14,32 @@ const SignUp = () => {
     confirmPassword: ''
   })
 
-  const [valid, setValid] = useState(true)
+  const [valid, setValid] = useState(false)
 
-  const handleChange = (event) => {
-    setFromstate({ ...formState, [event.target.name]: event.target.value })
+  const handleChange = async (event) => {
+    await setFromstate({
+      ...formState,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  const checkForm = () => {
     if (
-      formState.username != '' &&
-      formState.email != '' &&
-      formState.password != '' &&
-      formState.confirmPassword != ''
+      formState.username == '' ||
+      formState.email == '' ||
+      formState.password == '' ||
+      formState.confirmPassword == '' ||
+      formState.password != formState.confirmPassword
     ) {
       setValid(false)
     } else {
       setValid(true)
     }
   }
+
+  useEffect(() => {
+    checkForm()
+  }, [formState])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -72,9 +83,13 @@ const SignUp = () => {
           name="confirmPassword"
           onChange={handleChange}
           value={formState.confirmPassword}
+          error={
+            formState.password != formState.confirmPassword &&
+            formState.confirmPassword != ''
+          }
         />
       </div>
-      <Button disabled={valid} type="submit">
+      <Button disabled={!valid} type="submit">
         sign up
       </Button>
     </form>
