@@ -33,21 +33,25 @@ const Login = ({ setUser }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Sign up</h1>
-      <FormLabel>username</FormLabel>
-      <Input
-        placeholder="username"
-        name="username"
-        onChange={handleChange}
-        value={formState.username}
-      />
-      <FormLabel>password</FormLabel>
-      <Input
-        placeholder="password"
-        name="password"
-        onChange={handleChange}
-        value={formState.password}
-      />
+      <h1>Login</h1>
+      <div>
+        <FormLabel>username</FormLabel>
+        <Input
+          placeholder="username"
+          name="username"
+          onChange={handleChange}
+          value={formState.username}
+        />
+      </div>
+      <div>
+        <FormLabel>password</FormLabel>
+        <Input
+          placeholder="password"
+          name="password"
+          onChange={handleChange}
+          value={formState.password}
+        />
+      </div>
 
       <Button disabled={valid} type="submit">
         Login

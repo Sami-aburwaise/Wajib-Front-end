@@ -37,39 +37,43 @@ const SignUp = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Sign up</h1>
-      <FormLabel>username</FormLabel>
-      <Input
-        placeholder="username"
-        name="username"
-        onChange={handleChange}
-        value={formState.username}
-      />
-
-      <FormLabel>email</FormLabel>
-      <Input
-        placeholder="email"
-        name="email"
-        onChange={handleChange}
-        value={formState.email}
-      />
-
-      <FormLabel>password</FormLabel>
-      <Input
-        placeholder="password"
-        name="password"
-        onChange={handleChange}
-        value={formState.password}
-      />
-
-      <FormLabel>confirm password</FormLabel>
-      <Input
-        placeholder="confirm password"
-        name="confirmPassword"
-        onChange={handleChange}
-        value={formState.confirmPassword}
-      />
-
+      <div>
+        <h1>Sign up</h1>
+        <FormLabel>username</FormLabel>
+        <Input
+          placeholder="username"
+          name="username"
+          onChange={handleChange}
+          value={formState.username}
+        />
+      </div>
+      <div>
+        <FormLabel>email</FormLabel>
+        <Input
+          placeholder="email"
+          name="email"
+          onChange={handleChange}
+          value={formState.email}
+        />
+      </div>
+      <div>
+        <FormLabel>password</FormLabel>
+        <Input
+          placeholder="password"
+          name="password"
+          onChange={handleChange}
+          value={formState.password}
+        />
+      </div>
+      <div>
+        <FormLabel>confirm password</FormLabel>
+        <Input
+          placeholder="confirm password"
+          name="confirmPassword"
+          onChange={handleChange}
+          value={formState.confirmPassword}
+        />
+      </div>
       <Button disabled={valid} type="submit">
         sign up
       </Button>
