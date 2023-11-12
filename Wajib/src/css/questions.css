@@ -2,11 +2,11 @@
 #questions-container{
   width: 100%;
 }
+
 #search{
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 50px;
 }
 
 #add-button{
@@ -23,3 +23,28 @@
   margin:30px ;
 }
 
+#question-detail{
+  min-height: 100vh;
+}
+
+#question-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+#question-header > *{
+  margin: 0;
+}
+
+#question-container{
+  margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#question-container img{
+  max-width: 100%;
+}

@@ -24,7 +24,7 @@ header > *{
   margin: 0;
   height: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -90,6 +90,7 @@ main{
   margin-left: 60px;
   min-height: 100vh;
   padding: 10px;
+  padding-top: 50px;
   background-color: rgb(175, 175, 175);
   transition: margin 0.1s ease-out;
   overflow: hidden;
