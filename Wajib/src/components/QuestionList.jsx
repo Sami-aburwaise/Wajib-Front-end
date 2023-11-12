@@ -20,6 +20,9 @@ const QuestionList = ({ selectQuestion }) => {
   const [questions, setQuestions] = useState(null)
 
   const searchQuestion = async () => {
+    if (searchQuery == '') {
+      return
+    }
     let response = await Client.get(
       `${BASE_URL}/question/search?search_query=${searchQuery}`
     )
@@ -41,7 +44,11 @@ const QuestionList = ({ selectQuestion }) => {
         <IconButton variant="soft" onClick={searchQuestion}>
           <SearchIcon />
         </IconButton>
-        <IconButton variant="soft" onClick={()=>navigate('./add_question')} id="add-button">
+        <IconButton
+          variant="soft"
+          onClick={() => navigate('./add_question')}
+          id="add-button"
+        >
           <AddCircleIcon />
         </IconButton>
       </div>
@@ -54,7 +61,7 @@ const QuestionList = ({ selectQuestion }) => {
               sx={{ width: 400 }}
               key={question._id}
               className="card"
-              onClick={() => showQuesiton(question._id)}
+              onClick={() => showQuesiton(question)}
             >
               <CardOverflow>
                 <AspectRatio ratio="3">

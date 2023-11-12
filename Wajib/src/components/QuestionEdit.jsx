@@ -7,19 +7,18 @@ import Input from '@mui/joy/Input'
 
 import Button from '@mui/joy/Button'
 
-const AddQuestion = () => {
+const QuestionEdit = ({ selectedQuestion }) => {
   const navigate = useNavigate()
 
   const [formState, setFromstate] = useState({
-    subject: '',
-    question: ''
+    subject: selectedQuestion.subject,
+    question: selectedQuestion.question
   })
 
   const [valid, setValid] = useState(true)
 
   const handleChange = (event) => {
     setFromstate({ ...formState, [event.target.name]: event.target.value })
-    console.log(formState)
     if (formState.username != '' && formState.password != '') {
       setValid(false)
     } else {
@@ -29,12 +28,15 @@ const AddQuestion = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    let response = await Client.post(`${BASE_URL}/question/create`, formState)
-    navigate('/questions')
+    let response = await Client.post(
+      `${BASE_URL}/question/update/${selectedQuestion._id}`,
+      formState
+    )
+    navigate('/questions/detail')
   }
   return (
     <div>
-      <h1>New question</h1>
+      <h1>Edit question</h1>
       <form action="" method="post" onSubmit={handleSubmit}>
         <div>
           <FormLabel>Subject</FormLabel>
@@ -57,11 +59,11 @@ const AddQuestion = () => {
           />
         </div>
         <Button disabled={valid} type="submit">
-          Submit
+          Update
         </Button>
       </form>
     </div>
   )
 }
 
-export default AddQuestion
+export default QuestionEdit

@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { useEffect, useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Client, BASE_URL } from '../Globals'
 import { UserContext } from '../App'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
@@ -9,15 +10,39 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import IconButton from '@mui/material/IconButton'
 
 const QuestionDetail = ({ selectedQuestion }) => {
+  const navigate = useNavigate()
+
   const user = useContext(UserContext)
 
   const [question, setQuestion] = useState(null)
   const getQuestion = async () => {
     let response = await Client.get(
-      `${BASE_URL}/question/show/${selectedQuestion}`
+      `${BASE_URL}/question/show/${selectedQuestion._id}`
     )
-    console.log(response)
     setQuestion(response.data._doc)
+  }
+
+  const deleteQuestion = async () => {
+    let response = await Client.get(
+      `${BASE_URL}/question/delete/${question._id}`
+    )
+    response.data.status == 'ok' && navigate('/questions')
+  }
+
+  const handleClick = (action) => {
+    switch (action) {
+      case 'delete':
+        deleteQuestion()
+        break
+      case 'save':
+        console.log('save')
+        break
+      case 'edit':
+        navigate('/questions/edit_question')
+        break
+      default:
+        break
+    }
   }
 
   useEffect(() => {
@@ -39,15 +64,15 @@ const QuestionDetail = ({ selectedQuestion }) => {
         <div id="action-bar">
           {question.user._id == user.id ? (
             <div>
-              <IconButton size="large">
+              <IconButton size="large" onClick={() => handleClick('edit')}>
                 <ModeEditOutlineIcon fontSize="large" />
               </IconButton>
-              <IconButton size="large">
+              <IconButton size="large" onClick={() => handleClick('delete')}>
                 <DeleteIcon fontSize="large" />
               </IconButton>
             </div>
           ) : (
-            <IconButton size="large">
+            <IconButton size="large" onClick={() => handleClick('save')}>
               <BookmarkAddIcon fontSize="large" />
             </IconButton>
           )}
