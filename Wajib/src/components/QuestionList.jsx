@@ -41,7 +41,7 @@ const QuestionList = ({ selectQuestion }) => {
         <IconButton variant="soft" onClick={searchQuestion}>
           <SearchIcon />
         </IconButton>
-        <IconButton variant="soft" onClick={searchQuestion} id="add-button">
+        <IconButton variant="soft" onClick={()=>navigate('./add_question')} id="add-button">
           <AddCircleIcon />
         </IconButton>
       </div>

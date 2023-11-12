@@ -1,9 +1,16 @@
-import { useEffect, useState } from 'react'
-import { Client, BASE_URL } from '../Globals'
-import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import moment from 'moment'
+import { useEffect, useState, useContext } from 'react'
+import { Client, BASE_URL } from '../Globals'
+import { UserContext } from '../App'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline'
+import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd'
+import DeleteIcon from '@mui/icons-material/Delete'
+import IconButton from '@mui/material/IconButton'
 
 const QuestionDetail = ({ selectedQuestion }) => {
+  const user = useContext(UserContext)
+
   const [question, setQuestion] = useState(null)
   const getQuestion = async () => {
     let response = await Client.get(
@@ -27,7 +34,24 @@ const QuestionDetail = ({ selectedQuestion }) => {
           </div>
           <p>{moment(question.createdAt).fromNow()}</p>
         </div>
+
         <hr />
+        <div id="action-bar">
+          {question.user._id == user.id ? (
+            <div>
+              <IconButton size="large">
+                <ModeEditOutlineIcon fontSize="large" />
+              </IconButton>
+              <IconButton size="large">
+                <DeleteIcon fontSize="large" />
+              </IconButton>
+            </div>
+          ) : (
+            <IconButton size="large">
+              <BookmarkAddIcon fontSize="large" />
+            </IconButton>
+          )}
+        </div>
         <section id="question-container">
           <div>
             <h1>Question:</h1>
