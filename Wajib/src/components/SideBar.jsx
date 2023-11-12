@@ -9,38 +9,40 @@ import { NavLink } from 'react-router-dom'
 const SideBar = ({ user }) => {
   return (
     <aside>
-      <NavLink to="/" className="sideBar-link">
-        <HomeIcon fontSize="large" />
-        <h2>Home</h2>
-      </NavLink>
-      <NavLink to="/questions" className="sideBar-link">
-        <ContentPasteSearchIcon fontSize="large" />
-        <h2>Questions</h2>
-      </NavLink>
-      {user && (
-        <NavLink className="sideBar-link">
-          <BookmarkIcon fontSize="large" />
-          <h2>Saves</h2>
+      <div id="links-container">
+        <NavLink to="/" className="sideBar-link">
+          <HomeIcon fontSize="large" />
+          <h2>Home</h2>
         </NavLink>
-      )}
-      {user && (
-        <NavLink className="sideBar-link">
-          <HistoryIcon fontSize="large" />
-          <h2>History</h2>
+        <NavLink to="/questions" className="sideBar-link">
+          <ContentPasteSearchIcon fontSize="large" />
+          <h2>Questions</h2>
         </NavLink>
-      )}
-      {!user && (
-        <NavLink to="/Login" className="sideBar-link">
-          <LoginIcon fontSize="large" />
-          <h2>Login</h2>
-        </NavLink>
-      )}
-      {!user && (
-        <NavLink to="/Signup" className="sideBar-link">
-          <PersonAddIcon fontSize="large" />
-          <h2>Sign up</h2>
-        </NavLink>
-      )}
+        {user && (
+          <NavLink className="sideBar-link">
+            <BookmarkIcon fontSize="large" />
+            <h2>Saves</h2>
+          </NavLink>
+        )}
+        {user && (
+          <NavLink className="sideBar-link">
+            <HistoryIcon fontSize="large" />
+            <h2>History</h2>
+          </NavLink>
+        )}
+        {!user && (
+          <NavLink to="/Login" className="sideBar-link">
+            <LoginIcon fontSize="large" />
+            <h2>Login</h2>
+          </NavLink>
+        )}
+        {!user && (
+          <NavLink to="/Signup" className="sideBar-link">
+            <PersonAddIcon fontSize="large" />
+            <h2>Sign up</h2>
+          </NavLink>
+        )}
+      </div>
     </aside>
   )
 }

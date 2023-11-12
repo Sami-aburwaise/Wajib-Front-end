@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { BASE_URL } from '../Globals'
 import { useState } from 'react'
-import FormControl from '@mui/joy/FormControl'
 import FormLabel from '@mui/joy/FormLabel'
 import Input from '@mui/joy/Input'
 import Button from '@mui/joy/Button'
@@ -26,7 +25,6 @@ const Login = ({ setUser }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     let response = await axios.post(`${BASE_URL}/user/login`, formState)
-    console.log(response)
     setUser(response.data.user)
     localStorage.setItem('token', response.data.token) //  store token in local storage
   }
