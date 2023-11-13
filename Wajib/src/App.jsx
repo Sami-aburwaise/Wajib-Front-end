@@ -2,6 +2,7 @@ import Home from './pages/Home'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
 import Questions from './pages/Questions'
+import Profile from './pages/Profile'
 import Nav from './components/Nav'
 import SideBar from './components/SideBar'
 import Footer from './components/Footer'
@@ -10,6 +11,7 @@ import { Routes, Route } from 'react-router-dom'
 import axios from 'axios'
 import { Client, BASE_URL } from './Globals'
 import './App.css'
+import './css/profile.css'
 import './css/questions.css'
 
 export const UserContext = createContext()
@@ -48,6 +50,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/Login" element={<Login setUser={setUser} />} />
+            <Route path="/profile" element={<Profile setUser={setUser} />} />
             <Route path="/questions//*" element={<Questions />} />
           </Routes>
         </main>

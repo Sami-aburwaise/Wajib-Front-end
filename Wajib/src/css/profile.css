@@ -1,0 +1,13 @@
+#profile-container{
+  display: flex;
+  flex-direction: column;
+}
+
+#logout-button{
+  align-self: flex-end;
+}
+
+#info-section{
+  height: 50vh;
+}
+

@@ -43,13 +43,14 @@
   justify-content: flex-end;
 }
 
-#question-container{
+.question-container{
   margin-top: 25px;
+  height: 50vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
 #question-container img{
-  max-width: 100%;
+  height: 100%;
 }
