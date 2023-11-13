@@ -3,13 +3,14 @@ import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Client, BASE_URL } from '../Globals'
 import { UserContext } from '../App'
+import Answer from './Answer'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline'
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd'
 import DeleteIcon from '@mui/icons-material/Delete'
 import IconButton from '@mui/material/IconButton'
 
-const QuestionDetail = ({ selectedQuestion }) => {
+const QuestionDetail = ({ selectQuestion, selectedQuestion }) => {
   const navigate = useNavigate()
 
   const user = useContext(UserContext)
@@ -47,7 +48,7 @@ const QuestionDetail = ({ selectedQuestion }) => {
 
   useEffect(() => {
     getQuestion()
-  }, [])
+  }, [selectedQuestion])
 
   return (
     question && (
@@ -77,12 +78,11 @@ const QuestionDetail = ({ selectedQuestion }) => {
             </IconButton>
           )}
         </div>
-        <section id="question-container">
+        <section id="question-section">
           <div>
             <h1>Question:</h1>
             <h1>{question.question}</h1>
           </div>
-
           <img
             src={
               question.image
@@ -92,10 +92,15 @@ const QuestionDetail = ({ selectedQuestion }) => {
             alt=""
           />
         </section>
-        <section>
-          <h2>no answered</h2>
-        </section>
-        <section>no comments</section>
+        <hr />
+        <h2>Answer:</h2>
+        <Answer
+          answer={question.answer}
+          selectedQuestion={selectedQuestion}
+          selectQuestion={selectQuestion}
+        />
+
+        <section id="comments-section">no comments</section>
       </div>
     )
   )

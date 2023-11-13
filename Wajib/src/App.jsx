@@ -18,6 +18,7 @@ export const UserContext = createContext()
 
 const App = () => {
   const [user, setUser] = useState(null)
+  const [selectedQuestion, selectQuestion] = useState(null)
 
   const checkSession = async () => {
     try {
@@ -50,8 +51,25 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/Login" element={<Login setUser={setUser} />} />
-            <Route path="/profile" element={<Profile setUser={setUser} />} />
-            <Route path="/questions//*" element={<Questions />} />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  setUser={setUser}
+                  selectedQuestion={selectedQuestion}
+                  selectQuestion={selectQuestion}
+                />
+              }
+            />
+            <Route
+              path="/questions//*"
+              element={
+                <Questions
+                  selectedQuestion={selectedQuestion}
+                  selectQuestion={selectQuestion}
+                />
+              }
+            />
           </Routes>
         </main>
         <footer>

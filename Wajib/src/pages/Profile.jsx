@@ -4,15 +4,19 @@ import { Client, BASE_URL } from '../Globals'
 import QuestionCards from '../components/QuestionCards'
 import Button from '@mui/material/Button'
 
-const Profile = ({ setUser }) => {
+const Profile = ({ setUser, selectQuestion }) => {
   const navigate = useNavigate()
 
   const [userInfo, setUserInfo] = useState(null)
 
   const getUserInfo = async () => {
     let response = await Client.get(BASE_URL + '/user/profile')
-    console.log(response)
     setUserInfo(response.data)
+  }
+
+  const showQuesiton = async (id) => {
+    await selectQuestion(id)
+    navigate('/questions/detail')
   }
 
   const logout = () => {
@@ -46,7 +50,10 @@ const Profile = ({ setUser }) => {
           <hr />
 
           <h1>My questions</h1>
-          <QuestionCards questions={userInfo.questions} />
+          <QuestionCards
+            questions={userInfo.questions}
+            showQuesiton={showQuesiton}
+          />
         </section>
       </div>
     )

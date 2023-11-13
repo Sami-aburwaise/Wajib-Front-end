@@ -19,7 +19,7 @@ const QuestionCreate = ({ selectQuestion }) => {
 
   const handleChange = (event) => {
     setFromstate({ ...formState, [event.target.name]: event.target.value })
-    if (formState.username != '' && formState.password != '') {
+    if (formState.subject != '' && formState.question != '') {
       setValid(false)
     } else {
       setValid(true)
