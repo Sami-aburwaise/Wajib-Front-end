@@ -44,7 +44,7 @@ const QuestionEdit = ({ selectedQuestion }) => {
             placeholder="ex: math, physics ..."
             name="subject"
             onChange={handleChange}
-            value={formState.password}
+            value={formState.subject}
           />
         </div>
 
@@ -55,6 +55,7 @@ const QuestionEdit = ({ selectedQuestion }) => {
             minRows={8}
             maxRows={16}
             name="question"
+            value={formState.question}
             onChange={handleChange}
           />
         </div>

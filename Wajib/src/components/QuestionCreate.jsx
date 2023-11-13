@@ -4,7 +4,6 @@ import { Client, BASE_URL } from '../Globals'
 import Textarea from '@mui/joy/Textarea'
 import FormLabel from '@mui/joy/FormLabel'
 import Input from '@mui/joy/Input'
-
 import Button from '@mui/joy/Button'
 
 const QuestionCreate = ({ selectQuestion }) => {
@@ -19,7 +18,7 @@ const QuestionCreate = ({ selectQuestion }) => {
 
   const handleChange = (event) => {
     setFromstate({ ...formState, [event.target.name]: event.target.value })
-    if (formState.username != '' && formState.password != '') {
+    if (formState.subject != '' && formState.question != '') {
       setValid(false)
     } else {
       setValid(true)
