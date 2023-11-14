@@ -13,6 +13,7 @@ import { Client, BASE_URL } from './Globals'
 import './App.css'
 import './css/profile.css'
 import './css/questions.css'
+import './css/home.css'
 
 export const UserContext = createContext()
 
