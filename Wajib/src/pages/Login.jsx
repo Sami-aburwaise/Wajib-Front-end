@@ -5,6 +5,15 @@ import FormLabel from '@mui/joy/FormLabel'
 import Input from '@mui/joy/Input'
 import Button from '@mui/joy/Button'
 
+import Paper from '@mui/material/Paper'
+import { styled } from '@mui/material/styles'
+
+const PaperSheet = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+  ...theme.typography.body2,
+  textAlign: 'center'
+}))
+
 const Login = ({ setUser }) => {
   const [formState, setFromstate] = useState({
     username: '',
@@ -30,30 +39,32 @@ const Login = ({ setUser }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Login</h1>
-      <div>
-        <FormLabel>username</FormLabel>
-        <Input
-          placeholder="username"
-          name="username"
-          onChange={handleChange}
-          value={formState.username}
-        />
-      </div>
-      <div>
-        <FormLabel>password</FormLabel>
-        <Input
-          placeholder="password"
-          name="password"
-          onChange={handleChange}
-          value={formState.password}
-        />
-      </div>
-      <Button disabled={valid} type="submit">
-        Login
-      </Button>
-    </form>
+    <PaperSheet square={false} elevation="3" className='form-sheet'>
+      <form onSubmit={handleSubmit}>
+        <h1>Login</h1>
+        <div>
+          <FormLabel>username</FormLabel>
+          <Input
+            placeholder="username"
+            name="username"
+            onChange={handleChange}
+            value={formState.username}
+          />
+        </div>
+        <div>
+          <FormLabel>password</FormLabel>
+          <Input
+            placeholder="password"
+            name="password"
+            onChange={handleChange}
+            value={formState.password}
+          />
+        </div>
+        <Button disabled={valid} type="submit">
+          Login
+        </Button>
+      </form>
+    </PaperSheet>
   )
 }
 

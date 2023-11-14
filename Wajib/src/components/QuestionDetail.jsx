@@ -10,6 +10,15 @@ import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd'
 import DeleteIcon from '@mui/icons-material/Delete'
 import IconButton from '@mui/material/IconButton'
 
+import Paper from '@mui/material/Paper'
+import { styled } from '@mui/material/styles'
+
+const PaperSheet = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+  ...theme.typography.body2,
+  textAlign: 'center'
+}))
+
 const QuestionDetail = ({ selectQuestion, selectedQuestion }) => {
   const navigate = useNavigate()
 
@@ -20,7 +29,8 @@ const QuestionDetail = ({ selectQuestion, selectedQuestion }) => {
     let response = await Client.get(
       `${BASE_URL}/question/show/${selectedQuestion._id}`
     )
-    setQuestion(response.data._doc)
+    console.log({ ...response.data.question, comments: response.data.comments })
+    setQuestion({ ...response.data.question, comments: response.data.comments })
   }
 
   const deleteQuestion = async () => {
@@ -53,54 +63,76 @@ const QuestionDetail = ({ selectQuestion, selectedQuestion }) => {
   return (
     question && (
       <div id="question-detail">
-        <div id="question-header">
-          <div className="user-tag">
-            <AccountCircleIcon fontSize="large" />
-            <h2>{question.user.username}</h2>
-          </div>
-          <p>{moment(question.createdAt).fromNow()}</p>
-        </div>
-
-        <hr />
-        <div id="action-bar">
-          {question.user._id == user.id ? (
-            <div>
-              <IconButton size="large" onClick={() => handleClick('edit')}>
-                <ModeEditOutlineIcon fontSize="large" />
-              </IconButton>
-              <IconButton size="large" onClick={() => handleClick('delete')}>
-                <DeleteIcon fontSize="large" />
-              </IconButton>
+        <PaperSheet square={false} elevation="3">
+          <div id="question-header">
+            <div className="user-tag">
+              <AccountCircleIcon fontSize="large" />
+              <h2>{question.user.username}</h2>
             </div>
-          ) : (
-            <IconButton size="large" onClick={() => handleClick('save')}>
-              <BookmarkAddIcon fontSize="large" />
-            </IconButton>
-          )}
-        </div>
-        <section id="question-section">
-          <div>
-            <h1>Question:</h1>
-            <h1>{question.question}</h1>
+            <div id="action-bar">
+              {question.user._id == user.id ? (
+                <div>
+                  <IconButton size="large" onClick={() => handleClick('edit')}>
+                    <ModeEditOutlineIcon fontSize="large" />
+                  </IconButton>
+                  <IconButton
+                    size="large"
+                    onClick={() => handleClick('delete')}
+                  >
+                    <DeleteIcon fontSize="large" />
+                  </IconButton>
+                </div>
+              ) : (
+                <IconButton size="large" onClick={() => handleClick('save')}>
+                  <BookmarkAddIcon fontSize="large" />
+                </IconButton>
+              )}
+            </div>
           </div>
-          <img
-            src={
-              question.image
-                ? question.image
-                : 'https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318'
-            }
-            alt=""
+          <hr />
+          <h1 className="section-name">Question:</h1>
+          <section id="question-section">
+            <h1>{question.question}</h1>
+            <img
+              src={
+                question.image
+                  ? question.image
+                  : 'https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318'
+              }
+              alt=""
+            />
+          </section>
+          <p className="date">{moment(question.createdAt).fromNow()}</p>
+          <hr />
+          <Answer
+            answer={question.answer}
+            selectedQuestion={selectedQuestion}
+            selectQuestion={selectQuestion}
           />
-        </section>
-        <hr />
-        <h2>Answer:</h2>
-        <Answer
-          answer={question.answer}
-          selectedQuestion={selectedQuestion}
-          selectQuestion={selectQuestion}
-        />
-
-        <section id="comments-section">no comments</section>
+        </PaperSheet>
+        <br />
+        <PaperSheet square={false} elevation="3">
+          <section id="comments-section">
+            <h2>Comments:</h2>
+            <div id="comments-container">
+              {question.comments ? (
+                question.comments.map((comment) => (
+                  <div className="comment">
+                    <div className="user-tag">
+                      <AccountCircleIcon fontSize="large" />
+                      <h2>{comment.user.username}</h2>
+                    </div>
+                    <div>
+                      <h3>{comment.comment}</h3>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>no comments</p>
+              )}
+            </div>
+          </section>
+        </PaperSheet>
       </div>
     )
   )

@@ -9,6 +9,7 @@ import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline'
 import ReportIcon from '@mui/icons-material/Report'
 import DeleteIcon from '@mui/icons-material/Delete'
 import IconButton from '@mui/material/IconButton'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 
 const Answer = ({ answer, selectedQuestion, selectQuestion }) => {
   const user = useContext(UserContext)
@@ -64,8 +65,8 @@ const Answer = ({ answer, selectedQuestion, selectQuestion }) => {
     let response = await Client.post(URL, formState)
 
     if (isEdit) {
-      console.log(response)
       selectQuestion({ ...selectedQuestion, answer: response.data.answer })
+      setFromstate({})
       setEdit(false)
     } else {
       selectQuestion(response.data.question)
@@ -85,7 +86,7 @@ const Answer = ({ answer, selectedQuestion, selectQuestion }) => {
                 maxRows={16}
                 name="answer"
                 onChange={handleChange}
-                defaultValue= {formState.answer}
+                defaultValue={formState.answer}
               />
             </div>
             <Button
@@ -98,39 +99,46 @@ const Answer = ({ answer, selectedQuestion, selectQuestion }) => {
             </Button>
           </form>
         ) : (
-          <h3>Not answered</h3>
+          <p id="no-section">Not answered</p>
         )}
       </section>
     )
   } else {
     return (
-      <div>
-        <div id="action-bar">
-          {answer.user._id == user.id ? (
-            <div>
-              <IconButton size="large" onClick={() => handleClick('edit')}>
-                <ModeEditOutlineIcon fontSize="large" />
-              </IconButton>
-              <IconButton size="large" onClick={() => handleClick('delete')}>
-                <DeleteIcon fontSize="large" />
-              </IconButton>
-            </div>
-          ) : (
-            <Button
-              variant="outlined"
-              onClick={() => handleClick('report')}
-              color="error"
-              startIcon={<ReportIcon />}
-            >
-              Report
-            </Button>
-          )}
+      <section id="answer-section">
+        <div id="answer-header">
+          <div className="user-tag">
+            <AccountCircleIcon fontSize="large" />
+            <h2>{answer.user.username}</h2>
+          </div>
+          <div id="action-bar">
+            {answer.user._id == user.id ? (
+              <div>
+                <IconButton size="large" onClick={() => handleClick('edit')}>
+                  <ModeEditOutlineIcon fontSize="large" />
+                </IconButton>
+                <IconButton size="large" onClick={() => handleClick('delete')}>
+                  <DeleteIcon fontSize="large" />
+                </IconButton>
+              </div>
+            ) : (
+              <Button
+                variant="outlined"
+                onClick={() => handleClick('report')}
+                color="error"
+                startIcon={<ReportIcon />}
+              >
+                Report
+              </Button>
+            )}
+          </div>
         </div>
+
         <section id="answer-section">
           <h2>{answer.answer}</h2>
           <img src={answer.image} alt="" />
         </section>
-      </div>
+      </section>
     )
   }
 }

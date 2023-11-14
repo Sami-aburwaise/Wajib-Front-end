@@ -40,7 +40,7 @@ const QuestionCards = ({ questions, showQuesiton }) => {
                   fontWeight="md"
                   textColor="text.secondary"
                 >
-                  6.3k views
+                  {question.answer ? 'answered' : 'not answered'}
                 </Typography>
                 <Divider orientation="vertical" />
                 <Typography

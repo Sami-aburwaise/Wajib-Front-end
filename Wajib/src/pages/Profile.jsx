@@ -3,10 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { Client, BASE_URL } from '../Globals'
 import QuestionCards from '../components/QuestionCards'
 import Button from '@mui/material/Button'
+import { UserContext } from '../App'
 
 const Profile = ({ setUser, selectQuestion }) => {
   const navigate = useNavigate()
-
+  const user = useContext(UserContext)
   const [userInfo, setUserInfo] = useState(null)
 
   const getUserInfo = async () => {
