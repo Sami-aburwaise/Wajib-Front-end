@@ -7,7 +7,7 @@ const Nav = ({ user }) => {
 
   return (
     <header>
-      <h1>Wajib</h1>
+      <h1 className='cabin'>Wajib</h1>
       {user ? (
         <div className="user-tag" onClick={() => navigate('/profile')}>
           <AccountCircleIcon fontSize="large" />

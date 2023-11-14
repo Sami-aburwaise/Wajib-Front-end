@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Client, BASE_URL } from '../Globals'
 import { UserContext } from '../App'
+import Comments from './Comments'
 import Answer from './Answer'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline'
@@ -111,28 +112,11 @@ const QuestionDetail = ({ selectQuestion, selectedQuestion }) => {
           />
         </PaperSheet>
         <br />
-        <PaperSheet square={false} elevation="3">
-          <section id="comments-section">
-            <h2>Comments:</h2>
-            <div id="comments-container">
-              {question.comments ? (
-                question.comments.map((comment) => (
-                  <div className="comment">
-                    <div className="user-tag">
-                      <AccountCircleIcon fontSize="large" />
-                      <h2>{comment.user.username}</h2>
-                    </div>
-                    <div>
-                      <h3>{comment.comment}</h3>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <p>no comments</p>
-              )}
-            </div>
-          </section>
-        </PaperSheet>
+        <Comments
+          comments={question.comments}
+          selectedQuestion={selectedQuestion}
+          selectQuestion={selectQuestion}
+        />
       </div>
     )
   )

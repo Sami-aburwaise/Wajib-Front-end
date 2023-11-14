@@ -106,9 +106,36 @@
 
 .comment{
   background-color: #93B1A6;
-  margin-top: 10px;
+  margin-top: 15px;
   padding: 15px;
   border-radius: 25px;
   height: fit-content;
   overflow: auto;
 }
+
+
+.comment .user-tag{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.comment .user-tag .action-bar{
+  width: 100%;
+  text-align: end;
+}
+
+.comment button{
+  position: relative;
+  justify-self: flex-end;
+}
+
+#comment-form{
+  display: flex;
+  justify-content: center;
+}
+
+#comment-form div{
+  width: 80%;
+}
+

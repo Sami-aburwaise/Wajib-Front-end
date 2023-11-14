@@ -1,7 +1,18 @@
+@import
+url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Dosis:wght@200&family=Lilita+One&family=Orbitron&family=Teko:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&family=Comfortaa:wght@300&family=Dosis:wght@200&family=Lilita+One&family=Orbitron&family=Teko:wght@300&display=swap');
+
+
 html, body{
   margin: 0;
   padding: 0;
+
 }
+
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Comfortaa', sans-serif;
+}
+
 
 hr{
   opacity: 0.2;
@@ -19,6 +30,14 @@ header{
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.cabin{
+  font-family: 'Cabin Sketch', sans-serif;
+}
+
+header h1{
+  font-size: 50px;
 }
 
 header > *{
