@@ -42,7 +42,9 @@ const QuestionList = ({ selectQuestion }) => {
         </IconButton>
         <IconButton
           variant="soft"
-          onClick={() => navigate('./add_question')}
+          onClick={() => {
+            user ? navigate('./add_question') : navigate('/login')
+          }}
           id="add-button"
         >
           <AddCircleIcon />

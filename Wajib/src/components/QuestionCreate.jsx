@@ -6,6 +6,15 @@ import FormLabel from '@mui/joy/FormLabel'
 import Input from '@mui/joy/Input'
 import Button from '@mui/joy/Button'
 
+import Paper from '@mui/material/Paper'
+import { styled } from '@mui/material/styles'
+
+const PaperSheet = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+  ...theme.typography.body2,
+  textAlign: 'center'
+}))
+
 const QuestionCreate = ({ selectQuestion }) => {
   const navigate = useNavigate()
 
@@ -32,7 +41,7 @@ const QuestionCreate = ({ selectQuestion }) => {
     navigate('/questions/detail')
   }
   return (
-    <div>
+    <PaperSheet square={false} elevation="3" className="form-sheet">
       <h1>New question</h1>
       <form action="" method="post" onSubmit={handleSubmit}>
         <div>
@@ -44,7 +53,6 @@ const QuestionCreate = ({ selectQuestion }) => {
             value={formState.password}
           />
         </div>
-
         <div>
           <FormLabel>Question</FormLabel>
           <Textarea
@@ -59,7 +67,7 @@ const QuestionCreate = ({ selectQuestion }) => {
           Submit
         </Button>
       </form>
-    </div>
+    </PaperSheet>
   )
 }
 

@@ -7,6 +7,15 @@ import Input from '@mui/joy/Input'
 
 import Button from '@mui/joy/Button'
 
+import Paper from '@mui/material/Paper'
+import { styled } from '@mui/material/styles'
+
+const PaperSheet = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(2),
+  ...theme.typography.body2,
+  textAlign: 'center'
+}))
+
 const QuestionEdit = ({ selectedQuestion }) => {
   const navigate = useNavigate()
 
@@ -35,7 +44,7 @@ const QuestionEdit = ({ selectedQuestion }) => {
     navigate('/questions/detail')
   }
   return (
-    <div>
+    <PaperSheet square={false} elevation="3" className="form-sheet">
       <h1>Edit question</h1>
       <form action="" method="post" onSubmit={handleSubmit}>
         <div>
@@ -63,7 +72,7 @@ const QuestionEdit = ({ selectedQuestion }) => {
           Update
         </Button>
       </form>
-    </div>
+    </PaperSheet>
   )
 }
 
