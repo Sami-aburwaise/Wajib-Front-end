@@ -8,6 +8,13 @@
 }
 
 #info-section{
-  height: 50vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#info-section span{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 

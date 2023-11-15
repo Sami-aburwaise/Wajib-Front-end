@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { UserContext } from '../App'
 import { Client, BASE_URL } from '../Globals'
 import { useNavigate } from 'react-router-dom'
 import QuestionCards from './QuestionCards'
@@ -9,7 +10,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle'
 
 const QuestionList = ({ selectQuestion }) => {
   const navigate = useNavigate()
-
+  const user = useContext(UserContext)
   const [searchQuery, setSearchQuery] = useState('')
   const [questions, setQuestions] = useState(null)
 
@@ -29,7 +30,8 @@ const QuestionList = ({ selectQuestion }) => {
 
   const showQuesiton = async (id) => {
     await selectQuestion(id)
-    navigate('./detail')
+
+    user ? navigate('./detail') : navigate('/login')
   }
   return (
     <div className="questions-container">
@@ -40,7 +42,9 @@ const QuestionList = ({ selectQuestion }) => {
         </IconButton>
         <IconButton
           variant="soft"
-          onClick={() => navigate('./add_question')}
+          onClick={() => {
+            user ? navigate('./add_question') : navigate('/login')
+          }}
           id="add-button"
         >
           <AddCircleIcon />

@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <div>
-      <h3>Footer</h3>
+      <p>© 2023 Wajib. All rights reserved.</p>
     </div>
   )
 }
