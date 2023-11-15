@@ -41,13 +41,18 @@ const Answer = ({ answer, selectedQuestion, selectQuestion }) => {
     setFromstate({ ...formState, answer: answer.answer })
   }
 
+  const reportAnswer = async () => {
+    let response = await Client.get(`${BASE_URL}/answer/report/${answer._id}`)
+    selectQuestion({ ...selectedQuestion, answer: response.data.answer })
+  }
+
   const handleClick = (action) => {
     switch (action) {
       case 'delete':
         deleteAnswer()
         break
       case 'report':
-        console.log('report')
+        reportAnswer()
         break
       case 'edit':
         editAnswer()
@@ -122,14 +127,20 @@ const Answer = ({ answer, selectedQuestion, selectQuestion }) => {
                 </IconButton>
               </div>
             ) : (
-              <Button
-                variant="outlined"
-                onClick={() => handleClick('report')}
-                color="error"
-                startIcon={<ReportIcon />}
-              >
-                Report
-              </Button>
+              <div>
+                {answer.status == 'reported' ? (
+                  <p id="ans-status">Ansewer Reported</p>
+                ) : (
+                  <Button
+                    variant="outlined"
+                    onClick={() => handleClick('report')}
+                    color="error"
+                    startIcon={<ReportIcon />}
+                  >
+                    Report
+                  </Button>
+                )}
+              </div>
             )}
           </div>
         </div>

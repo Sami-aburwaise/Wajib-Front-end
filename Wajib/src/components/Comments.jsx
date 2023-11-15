@@ -69,7 +69,7 @@ const Comments = ({ comments, selectQuestion, selectedQuestion }) => {
       <section id="comments-section">
         <div id="comments-container">
           {comments ? (
-            comments.map((comment) => (
+            comments.reverse().map((comment) => (
               <div className="comment" key={comment._id}>
                 <div className="user-tag">
                   <AccountCircleIcon fontSize="large" />
