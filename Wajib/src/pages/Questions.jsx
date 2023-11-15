@@ -8,7 +8,7 @@ import { BASE_URL, Client } from '../Globals'
 import { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-const Questions = ({ selectedQuestion, selectQuestion }) => {
+const Questions = ({ selectedQuestion, selectQuestion, notify }) => {
   return (
     <Routes>
       <Route
@@ -26,7 +26,9 @@ const Questions = ({ selectedQuestion, selectQuestion }) => {
       />
       <Route
         path="/add_question"
-        element={<QuestionCreate selectQuestion={selectQuestion} />}
+        element={
+          <QuestionCreate selectQuestion={selectQuestion} notify={notify} />
+        }
       />
       <Route
         path="/edit_question"

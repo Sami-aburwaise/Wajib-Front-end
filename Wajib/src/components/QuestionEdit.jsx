@@ -44,7 +44,7 @@ const QuestionEdit = ({ selectedQuestion }) => {
     navigate('/questions/detail')
   }
   return (
-    <PaperSheet square={false} elevation="3" className="form-sheet">
+    <PaperSheet square={false} elevation={3} className="form-sheet">
       <h1>Edit question</h1>
       <form action="" method="post" onSubmit={handleSubmit}>
         <div>

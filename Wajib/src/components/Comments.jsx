@@ -49,7 +49,7 @@ const Comments = ({ comments, selectQuestion, selectedQuestion }) => {
   }
 
   return (
-    <PaperSheet square={false} elevation="3">
+    <PaperSheet square={false} elevation={3}>
       <div id="comment-form">
         <Input
           placeholder="comment"

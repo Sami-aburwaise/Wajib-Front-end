@@ -17,11 +17,11 @@ const PaperSheet = styled(Paper)(({ theme }) => ({
 
 const QuestionCreate = ({ selectQuestion }) => {
   const navigate = useNavigate()
-
   const [formState, setFromstate] = useState({
     subject: '',
     question: ''
   })
+  const [file, setFile] = useState()
 
   const [valid, setValid] = useState(true)
 
@@ -36,12 +36,19 @@ const QuestionCreate = ({ selectQuestion }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    let response = await Client.post(`${BASE_URL}/question/create`, formState)
+    setFromstate({ ...formState, image: file.filename })
+    const formData = new FormData()
+    formData.append('image', file)
+    formData.append('subject', formState.subject)
+    formData.append('question', formState.question)
+    let response = await Client.post(`${BASE_URL}/question/create`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' }
+    })
     selectQuestion(response.data.question)
     navigate('/questions/detail')
   }
   return (
-    <PaperSheet square={false} elevation="3" className="form-sheet">
+    <PaperSheet square={false} elevation={3} className="form-sheet">
       <h1>New question</h1>
       <form action="" method="post" onSubmit={handleSubmit}>
         <div>
@@ -53,6 +60,12 @@ const QuestionCreate = ({ selectQuestion }) => {
             value={formState.password}
           />
         </div>
+        <input
+          filename={file}
+          onChange={(e) => setFile(e.target.files[0])}
+          type="file"
+          accept="image/*"
+        ></input>
         <div>
           <FormLabel>Question</FormLabel>
           <Textarea
