@@ -49,7 +49,7 @@ const Comments = ({ comments, selectQuestion, selectedQuestion }) => {
   }
 
   return (
-    <PaperSheet square={false} elevation="3">
+    <PaperSheet square={false} elevation={3}>
       <div id="comment-form">
         <Input
           placeholder="comment"
@@ -69,7 +69,7 @@ const Comments = ({ comments, selectQuestion, selectedQuestion }) => {
       <section id="comments-section">
         <div id="comments-container">
           {comments ? (
-            comments.map((comment) => (
+            comments.reverse().map((comment) => (
               <div className="comment" key={comment._id}>
                 <div className="user-tag">
                   <AccountCircleIcon fontSize="large" />

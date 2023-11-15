@@ -60,8 +60,7 @@
 }
 
 #question-section img{
-  width: 100%;
-  max-height: 800px;
+  width: 50%;
 }
 
 #answer-header{
@@ -139,3 +138,8 @@
   width: 80%;
 }
 
+#ans-status{
+  color: red;
+  font-weight: bold;
+  font-size: 25px;
+}

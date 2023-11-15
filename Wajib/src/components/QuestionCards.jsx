@@ -1,3 +1,4 @@
+import { BASE_URL } from '../Globals'
 import moment from 'moment'
 import AspectRatio from '@mui/joy/AspectRatio'
 import Card from '@mui/joy/Card'
@@ -10,7 +11,7 @@ const QuestionCards = ({ questions, showQuesiton }) => {
   return (
     <div id="results-container">
       {questions &&
-        questions.map((question) => (
+        questions.reverse().map((question) => (
           <Card
             variant="outlined"
             sx={{ width: 400 }}
@@ -21,7 +22,11 @@ const QuestionCards = ({ questions, showQuesiton }) => {
             <CardOverflow>
               <AspectRatio ratio="3">
                 <img
-                  src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318"
+                  src={
+                    question.image
+                      ? `${BASE_URL}/images/${question.image}`
+                      : 'https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318'
+                  }
                   srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318&dpr=2 2x"
                   loading="lazy"
                   alt=""

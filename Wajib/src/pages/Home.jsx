@@ -9,7 +9,7 @@ const PaperSheet = styled(Paper)(({ theme }) => ({
 
 const Home = () => {
   return (
-    <PaperSheet square={false} elevation="3">
+    <PaperSheet square={false} elevation={3}>
       <h1 className="cabin" id="title">
         Wajib
       </h1>

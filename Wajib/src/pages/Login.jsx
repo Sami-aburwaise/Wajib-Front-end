@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { BASE_URL } from '../Globals'
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import FormLabel from '@mui/joy/FormLabel'
 import Input from '@mui/joy/Input'
 import Button from '@mui/joy/Button'
@@ -57,7 +57,7 @@ const Login = ({ setUser }) => {
   }, [formState])
 
   return (
-    <PaperSheet square={false} elevation="3" className="form-sheet">
+    <PaperSheet square={false} elevation={3} className="form-sheet">
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
         <div>

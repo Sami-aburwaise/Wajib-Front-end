@@ -64,7 +64,7 @@ const SignUp = () => {
   }
 
   return (
-    <PaperSheet square={false} elevation="3" className="form-sheet">
+    <PaperSheet square={false} elevation={3} className="form-sheet">
       <form onSubmit={handleSubmit}>
         <div>
           <h1>Sign up</h1>

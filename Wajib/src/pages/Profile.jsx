@@ -43,7 +43,7 @@ const Profile = ({ setUser, selectQuestion }) => {
   return (
     userInfo && (
       <div id="profile-container">
-        <PaperSheet square={false} elevation="3">
+        <PaperSheet square={false} elevation={3}>
           <section id="info-section">
             <span>
               <h1>Profile info</h1>

@@ -64,7 +64,7 @@ const QuestionDetail = ({ selectQuestion, selectedQuestion }) => {
   return (
     question && (
       <div id="question-detail">
-        <PaperSheet square={false} elevation="3">
+        <PaperSheet square={false} elevation={3}>
           <div id="question-header">
             <div className="user-tag">
               <AccountCircleIcon fontSize="large" />
@@ -95,11 +95,7 @@ const QuestionDetail = ({ selectQuestion, selectedQuestion }) => {
           <section id="question-section">
             <h1>{question.question}</h1>
             <img
-              src={
-                question.image
-                  ? question.image
-                  : 'https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318'
-              }
+              src={question.image ? `${BASE_URL}/images/${question.image}` : ''}
               alt=""
             />
           </section>
