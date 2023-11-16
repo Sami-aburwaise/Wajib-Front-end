@@ -92,6 +92,7 @@ const SignUp = () => {
             name="password"
             onChange={handleChange}
             value={formState.password}
+            type="password"
           />
         </div>
         <div>
@@ -101,6 +102,7 @@ const SignUp = () => {
             name="confirmPassword"
             onChange={handleChange}
             value={formState.confirmPassword}
+            type="password"
             error={
               formState.password != formState.confirmPassword &&
               formState.confirmPassword != ''

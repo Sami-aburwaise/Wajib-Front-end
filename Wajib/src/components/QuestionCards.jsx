@@ -11,7 +11,7 @@ const QuestionCards = ({ questions, showQuesiton }) => {
   return (
     <div id="results-container">
       {questions &&
-        questions.reverse().map((question) => (
+        questions.map((question) => (
           <Card
             variant="outlined"
             sx={{ width: 400 }}

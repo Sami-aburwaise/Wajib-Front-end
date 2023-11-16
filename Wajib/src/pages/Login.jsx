@@ -73,6 +73,7 @@ const Login = ({ setUser }) => {
           <FormLabel>password</FormLabel>
           <Input
             placeholder="password"
+            type="password"
             name="password"
             onChange={handleChange}
             value={formState.password}
