@@ -46,7 +46,6 @@ const QuestionCreate = ({ selectQuestion }) => {
       .then((result) => {
         // Get Confidence score
         let text = result.data.text
-        console.log(text)
         setFromstate({
           ...formState,
           question: formState.question + '\n' + text
