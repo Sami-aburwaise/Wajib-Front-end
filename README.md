@@ -1,6 +1,6 @@
 # Wajib-Front-end
 
-what is this?
+Wajib is full-Stack MERN used to get study and homework help by posting questions and view others previous answers. Features search, create, update and delete questions answers and comments. upload question screenshoot. Also image to text is fratured for easier search. 
 
 ## Screenshots
 
@@ -13,13 +13,15 @@ what is this?
 
 * Material-UI
 
-* Tostify
+* Tesseract
 
 
 ## Getting Started:
 
 [my Trello board](https://trello.com/b/imc1Mzsu/project4)
 
+### screenshoots
+![]()
 
 ### ERD
 ![](/images/project4%20ERD.png)
