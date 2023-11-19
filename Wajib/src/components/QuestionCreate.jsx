@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Client, BASE_URL } from '../Globals'
+import Tesseract from 'tesseract.js'
+
 import Textarea from '@mui/joy/Textarea'
 import FormLabel from '@mui/joy/FormLabel'
 import Input from '@mui/joy/Input'
@@ -22,8 +24,34 @@ const QuestionCreate = ({ selectQuestion }) => {
     question: ''
   })
   const [file, setFile] = useState()
-
+  const [imagePath, setImagePath] = useState('')
   const [valid, setValid] = useState(true)
+
+  const handleImg = async (event) => {
+    setFile(event.target.files[0])
+    setImagePath(URL.createObjectURL(event.target.files[0]))
+  }
+
+  const img2text = () => {
+    if (!imagePath) {
+      return
+    }
+    // img to text
+    Tesseract.recognize(imagePath, 'eng', {
+      logger: (m) => {}
+    })
+      .catch((err) => {
+        console.error(err)
+      })
+      .then((result) => {
+        // Get Confidence score
+        let text = result.data.text
+        setFromstate({
+          ...formState,
+          question: formState.question + '\n' + text
+        })
+      })
+  }
 
   const handleChange = (event) => {
     setFromstate({ ...formState, [event.target.name]: event.target.value })
@@ -37,6 +65,7 @@ const QuestionCreate = ({ selectQuestion }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     setFromstate({ ...formState, image: file.filename })
+
     const formData = new FormData()
     formData.append('image', file)
     formData.append('subject', formState.subject)
@@ -47,6 +76,11 @@ const QuestionCreate = ({ selectQuestion }) => {
     selectQuestion(response.data.question)
     navigate('/questions/detail')
   }
+
+  useEffect(() => {
+    img2text()
+  }, [imagePath])
+
   return (
     <PaperSheet square={false} elevation={3} className="form-sheet">
       <h1>New question</h1>
@@ -62,7 +96,7 @@ const QuestionCreate = ({ selectQuestion }) => {
         </div>
         <input
           filename={file}
-          onChange={(e) => setFile(e.target.files[0])}
+          onChange={(e) => handleImg(e)}
           type="file"
           accept="image/*"
         ></input>
@@ -74,6 +108,7 @@ const QuestionCreate = ({ selectQuestion }) => {
             maxRows={16}
             name="question"
             onChange={handleChange}
+            value={formState.question}
           />
         </div>
         <Button disabled={valid} type="submit">

@@ -30,7 +30,6 @@ const QuestionDetail = ({ selectQuestion, selectedQuestion }) => {
     let response = await Client.get(
       `${BASE_URL}/question/show/${selectedQuestion._id}`
     )
-    console.log({ ...response.data.question, comments: response.data.comments })
     setQuestion({ ...response.data.question, comments: response.data.comments })
   }
 
